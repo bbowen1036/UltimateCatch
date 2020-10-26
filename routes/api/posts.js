@@ -29,16 +29,16 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/",
-    // passport.authenticate("jwt", { session: false }),
+    passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        // const { isValid, errors } = validatePostInput(req.body) 
+        const { isValid, errors } = validatePostInput(req.body) 
     
-        // if(!isValid){
-        //     return res.status(400).json(errors);
-        // }
+        if(!isValid){
+            return res.status(400).json(errors);
+        }
 
         const newPost = new Post({
-            // user: req.user.id,
+            user: req.user.id,
             text: req.body.text
         });
 
