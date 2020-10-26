@@ -1,0 +1,19 @@
+{
+  "name": "ultimatecatch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbowen1036/UltimateCatch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbowen1036/UltimateCatch/issues"
+  },
+  "homepage": "https://github.com/bbowen1036/UltimateCatch#readme"
+}
