@@ -18,31 +18,47 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <div>
-                <Link to={'/tweets'}>All Tweets</Link>
-                <Link to={'/profile'}>Profile</Link>
-                <Link to={'/new_tweet'}>Write a Tweet</Link>
-                <button onClick={this.logoutUser}>Logout</button>
-            </div>
+            <>
+              <li><Link to={'/tweets'}>All Tweets</Link></li>
+              <li><Link to={'/profile'}>Profile</Link></li>
+              <li><Link to={'/new_tweet'}>Write a Tweet</Link></li> 
+              <button onClick={this.logoutUser}>Logout</button>
+            </>
         );
       } else {
-        return (
-            <div>
-                <Link to={'/signup'}>Signup</Link>
-                <Link to={'/login'}>Login</Link>
-            </div>
+        return (          
+              <> 
+                <li><Link className="nav-links" to={'/signup'}>Signup</Link></li>
+                <li><Link className="nav-links" to={'/login'}>Login</Link></li>
+              </>     
         );
       }
   }
 
+  
+
   render() {
+    
+    
       return (
-        <div>
-            <h1> -- NavBar --</h1>
+        <div className="NavBar">
+          
+          <a href="javascript:void(0);" className="navbar-toggle" id="js-navbar-toggle" >
+            <i className="fa fa-bars"></i>
+          </a>
+          <a href="#" className="logo">logo</a>
+          <ul className="main-nav" id="js-menu">
+            <li>
+              <a href="#" class="nav-links">Home</a>
+            </li>       
+
             { this.getLinks() }
+          </ul>
         </div>
       );
   }
+
+  
 }
 
 export default NavBar;
