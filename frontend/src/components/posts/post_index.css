@@ -11,15 +11,19 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-bottom: 40px;
 }
 
 .post-pic-container{
     width: 500px;
     height: 200px;
     background-color: pink;
+    margin-bottom: 20px;
 }
 
 .post-info{
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    padding: 0px 20px;
 }

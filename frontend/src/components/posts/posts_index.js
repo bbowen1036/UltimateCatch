@@ -25,14 +25,11 @@ class PostIndex extends React.Component {
       return (<div>There are no Posts</div>)
     } else {
       return (
-        <div>
-          <h2>All Posts</h2>
           <div className="posts-idx-container">
             {this.state.posts.map(post => (
               <PostIndexItem key={post.id} text={post.text} />
             ))}
           </div>
-        </div>
       );
     }
   }
