@@ -32,7 +32,7 @@ const mapContainerStyle = {
 };
 export default function Map(props){
     // console.log(props.weather == {})
-    console.log(props.weather)
+    console.log(props)
     // console.log(process.env.WEATHER_API_KEY)
     // if(props.weather !== {}){
     //     console.log(props.weather.data.weather)
@@ -71,12 +71,13 @@ export default function Map(props){
             
         })
         setWeatherBool(true)
+        console.log(weatherBool)
 
     }
     if(loadError){
         console.log("not loading maps")
         return "Error Loading Maps"
-    }
+    }   
     if (!isLoaded) {
         console.log("loadng map")
         return <div>"Loading Map!"</div>
