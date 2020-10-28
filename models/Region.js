@@ -1,0 +1,25 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const RegionSchema = new Schema({
+    // users: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'users'
+    // },
+    name: {
+        type: String,
+        required: true
+    },
+    lat: {
+        type: Number,
+        default: 0
+    },
+    lng:{
+        type: Number,
+        default: 0
+    }
+});
+
+const Region = mongoose.model('region', RegionSchema);
+
+module.exports = Region;
