@@ -30,19 +30,22 @@ const mapContainerStyle = {
     height: "100vh",
     width: "100vw",
 };
+
+const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
+
 export default function Map(props){
-    // console.log(props.weather == {})
-    console.log(props)
-    // console.log(process.env.WEATHER_API_KEY)
-    // if(props.weather !== {}){
-    //     console.log(props.weather.data.weather)
-    // }
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     })
     const [markers, placeMarkers] = React.useState([]);
+    console.log(markers)
     const [selected, setSelected] = React.useState(null);
+    // new google.maps.Marker({
+    //     position: myLatLng,
+    //     map,
+    //     title: "Hello World!",
+    // });
     const [weatherBool, setWeatherBool] = React.useState(false)
     const onMapClick = React.useCallback((e) => {
         placeMarkers((current) => [
@@ -55,31 +58,26 @@ export default function Map(props){
         ]);
     }, []);
     const getWeather= (latitude, longitude)=>{
-        // let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.WEATHER_API_KEY}`
         // let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=ff73536f48ae4d3c3b9179833e630eaf`
-        // let weather = props.fetchWeather(url).then((weather)=>{
-        props.fetchWeather(latitude, longitude).then((weather)=>{
-            if(weatherBool === false){
-                console.log("HEORTSODFO!!!")
-                console.log(weather.weather.data.weather[0].description)
-                // console.log(props.data.weather[0].description)
-                return (<div>{weather.weather.data.weather[0].description}</div>)
-            }else{
-                return 
-                <div>not working dude</div>
-            }
-            
-        })
-        setWeatherBool(true)
-        console.log(weatherBool)
+        props.fetchWeather(latitude, longitude)
+            // .then((weather)=>{
+            //     if(weatherBool === false){
+            //         console.log("HEORTSODFO!!!")
+            //         console.log(weather.weather.data.weather[0].description)
+            //         setWeatherBool(true)
+            //         console.log("weatherBool" + weatherBool)
+            //         if(props.weather.data){
 
+            //             console.log(props.weather.data.weather[0].description)
+            //         }
+            //         return (<div>{weather.weather.data.weather[0].description}</div>)
+            //     }
+            // })
     }
     if(loadError){
-        console.log("not loading maps")
         return "Error Loading Maps"
     }   
     if (!isLoaded) {
-        console.log("loadng map")
         return <div>"Loading Map!"</div>
     }
 
@@ -120,7 +118,8 @@ export default function Map(props){
                         <div>
                             <h2>
                                 We will put post modal here?
-                                <p>{!weatherBool ? getWeather(selected.lat, selected.lng): ""}</p>
+                                <p>{selected.lat} {selected.lng}</p>
+                                {/* <p>{props.weather.bool.weather[0].description ? <div>{props.weather.data.weather[0].description}</div> : getWeather(selected.lat,selected.lng)}</p> */}
                                 
                                 {/* <Post fetchpost={props.fetchPost} lat={selected.lat} lng={selected.lng}/> */}
                             </h2>
