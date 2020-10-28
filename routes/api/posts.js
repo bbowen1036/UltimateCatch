@@ -48,4 +48,14 @@ router.post("/",
     }
 )
 
+router.put('/:id', 
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        console.log(req)
+        Post
+            .findById(req.params.id)
+            .then(post => post.likes.push(req.user._id))
+    }
+)
+
 module.exports = router;
