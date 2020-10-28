@@ -1,4 +1,5 @@
 import React from 'react';
+import './post_form.css';
 
 class PostForm extends React.Component{
     constructor(props){
@@ -19,14 +20,15 @@ class PostForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         this.props.composePost(this.state)
-            .then(() => this.props.history.push("/"))
+            .then(() => this.props.history.push("/posts"))
     }
 
     render(){
+        debugger
         return(
-            <div>
+            <div className="post-form-container">
                 <h2>Make a post</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form className="post-form" onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.updateField("text")} placeholder="Check out this catch!"/>
                     <button type="submit">Create</button>
                 </form>

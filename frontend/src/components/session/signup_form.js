@@ -58,9 +58,11 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="form-container">
+        <h3 className="signup-title">Register</h3>
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
             <br/>
+              <label className="signup-email">Email</label>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
@@ -68,6 +70,7 @@ class SignupForm extends React.Component {
                 className="email"
               />
             <br/>
+            <label className="signup-handle">Handle</label>
               <input type="text"
                 value={this.state.handle}
                 onChange={this.update('handle')}
@@ -75,6 +78,7 @@ class SignupForm extends React.Component {
                 className="handle"
               />
             <br/>
+              <label className="signup-password">Password</label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
@@ -82,6 +86,7 @@ class SignupForm extends React.Component {
                 className="password1"
               />
             <br/>
+            <label className="signup-password2">Confirm Password</label>
               <input type="password"
                 value={this.state.password2}
                 onChange={this.update('password2')}
@@ -89,7 +94,7 @@ class SignupForm extends React.Component {
                 className="password2"
               />
             <br/>
-            <input className="submit" type="submit" value="Sign In" />
+            <input className="submit" type="submit" value="Sign Up" />
             
           </div>
         </form>
