@@ -18,31 +18,50 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <div>
-                <Link to={'/tweets'}>All Tweets</Link>
-                <Link to={'/profile'}>Profile</Link>
-                <Link to={'/new_tweet'}>Write a Tweet</Link>
-                <button onClick={this.logoutUser}>Logout</button>
-            </div>
+            <>
+              <li><Link to={'/posts'}>All Posts</Link></li>
+              <li><Link to={'/profile'}>Profile</Link></li>
+              <li><Link to={'/posts/new'}>Write a Post</Link></li> 
+              <button onClick={this.logoutUser}>Logout</button>
+            </>
         );
       } else {
-        return (
-            <div>
-                <Link to={'/signup'}>Signup</Link>
-                <Link to={'/login'}>Login</Link>
-            </div>
+        return (          
+              <> 
+                <li><Link className="nav-links" to={'/signup'}>Signup</Link></li>
+                <li><Link className="nav-links" to={'/login'}>Login</Link></li>
+              </>     
         );
       }
   }
 
+  
+
   render() {
+ 
+    
+    
       return (
-        <div>
-            <h1> -- NavBar --</h1>
+        <div className="NavBar">
+          
+          <span href="javascript:void(0);" className="navbar-toggle" id="js-navbar-toggle" >
+            <i className="fa fa-bars"></i>
+          </span>
+          {/* <a href="#" className="logo">logo</a> */}
+          <img className="logo-img" src="https://ultimatecatch-seed.s3-us-west-1.amazonaws.com/logo_size_invert.jpg"></img>
+          <ul className="main-nav" id="js-menu">
+            <li>
+              <Link to={'/'} class="nav-links">Home</Link>
+            </li>       
+
             { this.getLinks() }
+          </ul>
+          
         </div>
       );
   }
+
+  
 }
 
 export default NavBar;

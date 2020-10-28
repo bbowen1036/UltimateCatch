@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './signup_form.css'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -15,10 +16,10 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  // Once the user has been authenticated, redirect to the Tweets page
+  // Once the user has been authenticated, redirect to the Posts page
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      this.props.history.push('/tweets');
+      this.props.history.push('/posts');
     }
 
     // Set or clear errors
@@ -59,25 +60,27 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="form-container">
         <form onSubmit={this.handleSubmit}>
-          <div>
+          <div className="signup-form">
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
+                className="email-login"
               />
             <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
+                className="password1"
               />
             <br/>
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+            <input type="submit" value="Submit" className="submit" />
           </div>
         </form>
+            <div className='form-errors'>{this.renderErrors()}</div>
       </div>
     );
   }
