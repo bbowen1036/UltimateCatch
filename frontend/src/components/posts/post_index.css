@@ -1,0 +1,25 @@
+.posts-idx-container{
+    width: 500px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.posts-idx-item{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.post-pic-container{
+    width: 500px;
+    height: 200px;
+    background-color: pink;
+}
+
+.post-info{
+    display: flex;
+    justify-content: space-between;
+}

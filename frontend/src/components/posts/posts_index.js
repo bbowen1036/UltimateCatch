@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PostIndexItem from './post_index_item';
+import './post_index.css';
 
 class PostIndex extends React.Component {
   constructor(props) {
@@ -25,10 +26,12 @@ class PostIndex extends React.Component {
     } else {
       return (
         <div>
-          <h2>All Tweets</h2>
-          {this.state.posts.map(post => (
-            <PostIndexItem key={post.id} text={post.text} />
-          ))}
+          <h2>All Posts</h2>
+          <div className="posts-idx-container">
+            {this.state.posts.map(post => (
+              <PostIndexItem key={post.id} text={post.text} />
+            ))}
+          </div>
         </div>
       );
     }
