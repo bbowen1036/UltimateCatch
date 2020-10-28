@@ -19,9 +19,9 @@ class NavBar extends React.Component {
       if (this.props.loggedIn) {
         return (
             <>
-              <li><Link to={'/tweets'}>All Tweets</Link></li>
+              <li><Link to={'/posts'}>All Posts</Link></li>
               <li><Link to={'/profile'}>Profile</Link></li>
-              <li><Link to={'/new_tweet'}>Write a Tweet</Link></li> 
+              <li><Link to={'/posts/new'}>Write a Post</Link></li> 
               <button onClick={this.logoutUser}>Logout</button>
             </>
         );
@@ -38,22 +38,25 @@ class NavBar extends React.Component {
   
 
   render() {
+ 
     
     
       return (
         <div className="NavBar">
           
-          <a href="javascript:void(0);" className="navbar-toggle" id="js-navbar-toggle" >
+          <span href="javascript:void(0);" className="navbar-toggle" id="js-navbar-toggle" >
             <i className="fa fa-bars"></i>
-          </a>
-          <a href="#" className="logo">logo</a>
+          </span>
+          {/* <a href="#" className="logo">logo</a> */}
+          <img className="logo-img" src="https://ultimatecatch-seed.s3-us-west-1.amazonaws.com/logo_size_invert.jpg"></img>
           <ul className="main-nav" id="js-menu">
             <li>
-              <a href="#" class="nav-links">Home</a>
+              <Link to={'/'} class="nav-links">Home</Link>
             </li>       
 
             { this.getLinks() }
           </ul>
+          
         </div>
       );
   }
