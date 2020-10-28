@@ -1,6 +1,7 @@
 .main-content{
     display: flex;
     padding: 40px;
+    flex-wrap: wrap;
 }
 
 .sticky-map-container{

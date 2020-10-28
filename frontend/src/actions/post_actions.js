@@ -1,4 +1,4 @@
-import { getPosts, getUserPosts, writePost } from '../util/post_api_util';
+import { getPosts, getUserPosts, writePost, likePost } from '../util/post_api_util';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";
@@ -33,6 +33,12 @@ export const fetchUserPosts = id => dispatch => (
 
 export const composePost = data => dispatch => (
   writePost(data)
+    .then(post => dispatch(receiveNewPost(post)))
+    .catch(err => console.log(err))
+);
+
+export const heartPost = post => dispatch => (
+  likePost(post.id)
     .then(post => dispatch(receiveNewPost(post)))
     .catch(err => console.log(err))
 );

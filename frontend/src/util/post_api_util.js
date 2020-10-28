@@ -11,3 +11,7 @@ export const getUserPosts = id => {
 export const writePost = data => {
   return axios.post('/api/posts/', data)
 }
+
+export const likePost = id => {
+  return axios.put(`/api/posts/${id}`)
+}
