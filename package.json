@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/bbowen1036/UltimateCatch#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.12",
     "aws-sdk": "^2.780.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",

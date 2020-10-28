@@ -1,0 +1,13 @@
+.main-content{
+    display: flex;
+    padding: 40px;
+}
+
+.sticky-map-container{
+    width: 500px;
+    background-color: green;
+}
+
+.posts-idx-main-container{
+    margin: auto;
+}
