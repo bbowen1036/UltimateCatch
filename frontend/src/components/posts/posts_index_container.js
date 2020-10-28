@@ -4,7 +4,7 @@ import PostsIndex from './posts_index';
 
 const mapStateToProps = (state) => {
   return {
-    posts: Object.values(state.posts.all)
+    posts: Object.values(state.entities.posts.all)
   };
 };
 

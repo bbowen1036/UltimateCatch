@@ -27,8 +27,8 @@ const sanFran = {
     lng: -122.431297
 } // San Francisco coords
 const mapContainerStyle = {
-    height: "100vh",
-    width: "100vw",
+    height: "500px",
+    width: "500px",
 };
 
 const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
@@ -63,14 +63,14 @@ export default function Map(props){
     //         lng: -120.02614425979569
     //     }
     // })
-    placeMarkers((current) => [
-        ...current,
-        {
-            lat: 39.09423597068579,
-            lng: -120.02614425979569 ,
-            time: new Date(),
-        },
-    ]);
+    // placeMarkers((current) => [
+    //     ...current,
+    //     {
+    //         lat: 39.09423597068579,
+    //         lng: -120.02614425979569 ,
+    //         time: new Date(),
+    //     },
+    // ]);
     const getWeather= (latitude, longitude)=>{
         // let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=ff73536f48ae4d3c3b9179833e630eaf`
         props.fetchWeather(latitude, longitude)

@@ -6,9 +6,11 @@
 
 .sticky-map-container{
     width: 500px;
-    background-color: green;
+    border: 10px solid red;
+    height: 500px;
 }
 
 .posts-idx-main-container{
     margin: auto;
 }
+
