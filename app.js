@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
 
