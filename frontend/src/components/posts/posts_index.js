@@ -27,7 +27,7 @@ class PostIndex extends React.Component {
       return (
           <div className="posts-idx-container">
             {this.state.posts.map(post => (
-              <PostIndexItem key={post.id} text={post.text} />
+              <PostIndexItem key={post.id} post={post} heartPost={this.props.heartPost} />
             ))}
           </div>
       );
