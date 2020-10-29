@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
+// const files = require("./routes/api/files");
 
 const passport = require('passport');
 const bodyParser = require('body-parser');
@@ -35,6 +36,7 @@ app.use(bodyParser.json());
 
 app.use("/api/users", users);
 app.use("/api/posts", posts);
+// app.use("/api/files", files);
 
 mongoose
   .connect(db, { useNewUrlParser: true })

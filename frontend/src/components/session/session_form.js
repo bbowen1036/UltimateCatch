@@ -85,7 +85,7 @@ class SessionForm extends React.Component {
       }, 1500)
 
       window.setTimeout(() => {
-        this.setState({ email: "guest@guest.com", password: "password"}, () => {
+        this.setState({ email: "goneFishin@motorboatin.com", password: "password"}, () => {
           const user = Object.assign({}, this.state);
           this.props.login(user)
             .then(() => this.props.history.push("/main"));
