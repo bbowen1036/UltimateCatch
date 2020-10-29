@@ -45,7 +45,6 @@
 
 .comments{
     width: 205px;
-    background-color: blue;
     border-radius: 10px;
     overflow: auto;
 }
@@ -101,4 +100,15 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 10px 0px; 
+}
+
+.comment-owner{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.comment-body{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95px;
 }

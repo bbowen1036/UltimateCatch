@@ -41,8 +41,10 @@ class PostIndexItem extends React.Component{
                         <ul className="comments-list">
                             {this.props.post.comments.map(comment => {
                                 return <li className="user-comment">
-                                    <p>{comment.handle}</p>
-                                    <p>{comment.text}</p>
+                                    <p className="comment-owner">{comment.handle}:</p>
+                                    <div className="comment-body">
+                                        <p>{comment.text}</p>
+                                    </div>
                                 </li>
                             })}
                         </ul>
