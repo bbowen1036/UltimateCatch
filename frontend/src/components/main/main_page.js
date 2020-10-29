@@ -11,8 +11,12 @@ class MainPage extends React.Component {
 
 
         <div className="main-content">
-          <div className="sticky-map-container"> <MapContainer /> </div>
-          <div className="posts-idx-main-container"><PostsIndexContainer /></div>
+          <div className="map-container">
+            <div className="sticky-map-container"> <MapContainer /> </div>
+          </div>
+          <div className="posts-idx-main-container">
+            <div className="posts-idx-main" ><PostsIndexContainer /></div>
+          </div>
         </div>
         
         <footer>
