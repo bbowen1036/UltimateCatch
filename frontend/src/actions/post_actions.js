@@ -1,4 +1,4 @@
-import { getPosts, getPost, getUserPosts, writePost, likePost, unlikePost } from '../util/post_api_util';
+import { getPosts, getPost, getUserPosts, writePost, likePost, unlikePost, commentPost } from '../util/post_api_util';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";
@@ -60,6 +60,12 @@ export const heartPost = (postId, likeData) => dispatch => (
 export const unheartPost = (postId, likeData) => dispatch => (
   // console.log(post)  THIS IS WHERE YOUR ERROR WAS ZACH post.id undefined but post._id exists
   unlikePost(postId, likeData)
+    .then(post => dispatch(receivePost(post)))
+    .catch(err => console.log(err))
+);
+
+export const leaveComment = (postId, commentData) => dispatch => (
+  commentPost(postId, commentData)
     .then(post => dispatch(receivePost(post)))
     .catch(err => console.log(err))
 );

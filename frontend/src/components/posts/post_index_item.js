@@ -6,6 +6,18 @@ import { withRouter } from 'react-router-dom';
 class PostIndexItem extends React.Component{
     constructor(props){
         super(props);
+
+        this.state = {
+            text: ""
+        }
+
+        this.handleUpdate = this.handleUpdate.bind(this);
+    }
+
+    handleUpdate(field){
+        return e => {
+            this.setState({ [field]: e.target.value });
+        };
     }
 
     render(){
@@ -25,7 +37,16 @@ class PostIndexItem extends React.Component{
             <div className="posts-idx-item">
                 <div className="top-container">
                     <div className="post-pic-container"></div>
-                    <ul className="comments"></ul>
+                    <div className="comments">
+                        <ul className="comments-list">
+                            {this.props.post.comments.map(comment => {
+                                return <li className="user-comment">
+                                    <p>{comment.handle}</p>
+                                    <p>{comment.text}</p>
+                                </li>
+                            })}
+                        </ul>
+                    </div>
                 </div>
                 <div className="post-info">
                     <div className="likes-container">
@@ -36,8 +57,8 @@ class PostIndexItem extends React.Component{
                         <h3 className="post-text">{this.props.post.text}</h3>
                     </div>  
                     <div className="comment-container">
-                        <input type="text"/>
-                        <FontAwesomeIcon className="comment-icon" icon={faComment}/>
+                        <input className="comment-input" placeholder="Leave a comment!" onChange={this.handleUpdate("text")} type="text" />
+                        <FontAwesomeIcon className="comment-icon" icon={faComment} onClick={() => this.props.onComment(this.props.post._id, this.state)}/>
                     </div>
                 </div>
             </div>

@@ -114,6 +114,8 @@ router.post('/comment/:id',
               text: req.body.text
           }
 
+          post.comments.unshift(newComment)
+
           post.save().then(post => res.json(post))
     })
     .catch(err => res.status(404).json(err))

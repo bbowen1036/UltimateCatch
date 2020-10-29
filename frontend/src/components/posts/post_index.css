@@ -17,7 +17,7 @@
 }
 
 .post-pic-container{
-    width: 350px;
+    width: 325px;
     height: 200px;
     background-color: pink;
     border-radius: 10px;
@@ -44,9 +44,10 @@
 }
 
 .comments{
-    width: 150px;
+    width: 205px;
     background-color: blue;
     border-radius: 10px;
+    overflow: auto;
 }
 
 .top-container{
@@ -71,12 +72,13 @@
 .post-text{
     width: 100%;
     text-align: left;
-    padding: 0px 20px;
     margin: auto;
 }
 
 .post-text-container{
     border-right: 2px solid rgb(69,175,181);
+    padding: 0px 20px;
+    width: 515px;
 }
 
 .comment-icon{
@@ -84,7 +86,19 @@
 }
 
 .comment-container{
-    width: 200px;
+    width: 100%;
     margin: auto;
     display: flex;
+    padding-left: 20px;
+}
+
+.comment-input{
+    margin-right: 10px;
+}
+
+.user-comment{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 0px; 
 }
