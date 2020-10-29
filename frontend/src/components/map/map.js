@@ -1,5 +1,5 @@
 /* global google */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     GoogleMap,
     useLoadScript,
@@ -12,6 +12,7 @@ import {
 // } from "use-places-autocomplete";
 import mapStyles from './mapStyles'
 import { formatRelative } from "date-fns";
+import { Link, withRouter } from 'react-router-dom';
 
 /// make sure to npm i -S @react-google-maps/api
 // npm install --save use-places-autocomplete
@@ -30,23 +31,34 @@ const mapContainerStyle = {
     height: "720px",
     width: "600px",
 };
-
+let bool = false;
 const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
+
 
 export default function Map(props){
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     })
-    const [markers, placeMarkers] = React.useState([]);
+    const [markers, placeMarkers] = React.useState([{ lat: 39.09423597068579, lng: -120.02614425979569, time: new Date() },
+    { lat: 37.64794739271973, lng: -122.2829815703125, time: new Date() },
+    { lat: 39.05225234813503, lng: -122.8322979765625, time: new Date() }]);
     console.log(markers)
+    useEffect(() => {
+        if(!bool){
+
+            props.fetchPosts();
+        }
+        bool = true;
+    });
+    // markers.push({ lat: 39.09423597068579, lng: -120.02614425979569, time: new Date() })
+    // markers.push({ lat: 37.64794739271973, lng: -122.2829815703125, time: new Date() })
+    // markers.push({ lat: 39.05225234813503, lng: -122.8322979765625, time: new Date() })
     const [selected, setSelected] = React.useState(null);
-    // new google.maps.Marker({
-    //     position: myLatLng,
-    //     map,
-    //     title: "Hello World!",
-    // });
-    const [weatherBool, setWeatherBool] = React.useState(false)
+    const getWeather = (latitude, longitude) => {
+        props.fetchWeather(latitude, longitude)
+    }
+
     // const onMapClick = React.useCallback((e) => {
     //     placeMarkers((current) => [
     //         ...current,
@@ -57,17 +69,21 @@ export default function Map(props){
     //         },
     //     ]);
     // }, []);
-    markers.push({ lat: 39.09423597068579, lng: -120.02614425979569 })
+    // console.log(props.posts)
+    
+
+    let region1 = {
+        lat: 39.09423597068579,
+        lng: -120.02614425979569,
+        time: new Date(),
+        // weather: getWeather(39.09423597068579, -120.02614425979569)
+    }
     const locations = [
         { lat: 39.09423597068579, lng: -120.02614425979569 },
-        // { lat: -33.718234, lng: 150.363181 },
+        { lat: 37.64794739271973, lng: -122.2829815703125 },
+        { lat: 39.05225234813503, lng: -122.8322979765625 },
     ];
-    for(let i =0;i<locations.length;i++){
-        markers.push(locations[i])
-    }
-    const getWeather= (latitude, longitude)=>{
-        props.fetchWeather(latitude, longitude)
-    }
+
     if(loadError){
         return "Error Loading Maps"
     }   
@@ -91,6 +107,7 @@ export default function Map(props){
                         position={{ lat: marker.lat, lng: marker.lng }}
                         onClick={() => {
                             setSelected(marker);
+                            // getWeather(marker.lat, marker.lng)
                         }}
                         // icon={{
                         //     origin: new window.google.maps.Point(0, 0),
@@ -106,13 +123,17 @@ export default function Map(props){
                     // weatherBool = {weatherBool}
                     onCloseClick={() => {
                     setSelected(null);
-                    setWeatherBool(true);
+                    // setWeatherBool(true);
                     }}
                     >
                         <div>
                             <h2>
                                 We will put post modal here?
                                 <p>{selected.lat} {selected.lng}</p>
+                                <p>{props.posts[0]._id} </p>
+                                <p>{props.posts[0].text} </p>
+                                <p>{props.posts[0].date} </p>
+                                <Link to={`/api/posts/${props.posts[0]._id}`}> Go to Post </Link>
                                 {/* <p>{props.weather.bool.weather[0].description ? <div>{props.weather.data.weather[0].description}</div> : getWeather(selected.lat,selected.lng)}</p> */}
                                 
                                 {/* <Post fetchpost={props.fetchPost} lat={selected.lat} lng={selected.lng}/> */}
