@@ -15,6 +15,7 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +44,60 @@ class SessionForm extends React.Component {
     );
   }
 
+
+
+
+  handleDemo(e) {
+    e.preventDefault();
+
+    let i = 0;
+    let j = 0;
+    let demoEmail = "goneFishin@motorboatin.com";
+    let demoPassword = "password";
+
+    const typeUser = () => {
+      let timeout;
+      if (i < demoEmail.length) {
+        document.getElementById("email").value += demoEmail.charAt(i);
+        i++;
+        timeout = setTimeout(typeUser, 100);
+      } else {
+        clearTimeout(timeout)
+      }
+    }
+
+    const typePw = () => {
+      let timeout;
+      if (j < demoPassword.length) {
+        document.getElementById("password").value += demoPassword.charAt(j);
+        j++;
+        timeout = setTimeout(typePw, 100);
+      } else {
+        clearTimeout(timeout)
+      }
+    }
+
+    if (this.props.formType === 'demo') {
+      typeUser();
+
+      window.setTimeout(() => {
+        typePw();
+      }, 1500)
+
+      window.setTimeout(() => {
+        this.setState({ email: "guest@guest.com", password: "password"}, () => {
+          const user = Object.assign({}, this.state);
+          this.props.login(user)
+            .then(() => this.props.history.push("/main"));
+        });
+      }, 3000)
+    }
+  }
+
+
+
+
+
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
@@ -67,6 +122,9 @@ class SessionForm extends React.Component {
           </Link>
 
           <Link to="/signup" className="session-link"><span className={this.props.formType === "signup" ? "active" : "inactive"}>SIGN UP</span>
+          </Link>
+
+          <Link to="/demo" className="session-link"><span className={this.props.formType === "demo" ? "active-demo" : "inactive"}>DEMO</span>
           </Link>
         </div><br />
 
@@ -114,7 +172,7 @@ class SessionForm extends React.Component {
 
           <input
             className="input submit"
-            onClick={this.handleSubmit}
+            onClick={this.props.formType === "demo" ? this.handleDemo : this.handleSubmit}
             type="submit"
             value={this.props.formHeader}
           />
