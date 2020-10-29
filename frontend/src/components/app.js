@@ -11,9 +11,12 @@ import PostFormContainer from './posts/post_form_container';
 
 const App = () => (
   <div>
-    <NavBarContainer />
+    <header>
+      <NavBarContainer />
+    </header>
     <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
+
+        <ProtectedRoute exact path="/main" component={MainPage} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <Route exact path="/posts" component={PostsIndexContainer} />
