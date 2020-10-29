@@ -16,5 +16,5 @@ export const writePost = data => {
 export const likePost = id => {
   // console.log(id)
   // console.log(axios.put(`/api/posts/${id}`))
-  return axios.put(`/api/posts/${id}`)
+  return axios.post(`/api/posts/${id}`)
 }
