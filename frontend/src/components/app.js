@@ -8,6 +8,7 @@ import SignupFormContainer from './session/signup_form_container';
 import MapContainer from './map/map_container'
 import PostsIndexContainer from './posts/posts_index_container';
 import PostFormContainer from './posts/post_form_container';
+import SplashPage from './splash/splash'
 
 const App = () => (
   <div>
@@ -21,6 +22,7 @@ const App = () => (
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <Route exact path="/posts" component={PostsIndexContainer} />
         <Route exact path="/posts/new" component={PostFormContainer} />
+        <AuthRoute exact path="/" component={SplashPage} />
     </Switch>
   </div>
 );
