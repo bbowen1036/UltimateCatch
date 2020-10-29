@@ -24,7 +24,6 @@ class PostForm extends React.Component{
     }
 
     render(){
-        debugger
         return(
             <div className="post-form-container">
                 <h2>Make a post</h2>

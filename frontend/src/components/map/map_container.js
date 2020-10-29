@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchWeather: (lat,lng) => dispatch(fetchWeather(lat,lng))
+        //fetchRegions
     }
 }
 

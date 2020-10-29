@@ -1,8 +1,9 @@
-import { getPosts, getUserPosts, writePost, likePost } from '../util/post_api_util';
+import { getPosts, getPost, getUserPosts, writePost, likePost } from '../util/post_api_util';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";
 export const RECEIVE_NEW_POST = "RECEIVE_NEW_POST";
+export const RECEIVE_POST = "RECEIVE_POST";
 
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
@@ -16,6 +17,11 @@ export const receiveUserPosts = posts => ({
 
 export const receiveNewPost = post => ({
   type: RECEIVE_NEW_POST,
+  post
+})
+
+export const receivePost = post => ({
+  type: RECEIVE_POST,
   post
 })
 
@@ -38,9 +44,15 @@ export const composePost = data => dispatch => (
     .catch(err => console.log(err))
 );
 
-export const heartPost = post => dispatch => (
+export const fetchPost = postId => dispatch => (
+  getPost(postId)
+    .then(post => dispatch(receivePost(post)))
+    .catch(err => console.log(err))
+);
+
+export const heartPost = (postId, likeData) => dispatch => (
   // console.log(post)  THIS IS WHERE YOUR ERROR WAS ZACH post.id undefined but post._id exists
-  likePost(post._id)
-    .then(post => {console.log(post.data.likes); dispatch(receiveNewPost(post))})
+  likePost(postId)
+    .then(post => dispatch(receivePost(post)))
     .catch(err => console.log(err))
 );

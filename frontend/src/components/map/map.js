@@ -1,3 +1,4 @@
+/* global google */
 import React from 'react'
 import {
     GoogleMap,
@@ -11,7 +12,6 @@ import {
 // } from "use-places-autocomplete";
 import mapStyles from './mapStyles'
 import { formatRelative } from "date-fns";
-/* global google */
 
 /// make sure to npm i -S @react-google-maps/api
 // npm install --save use-places-autocomplete
@@ -27,8 +27,8 @@ const sanFran = {
     lng: -122.431297
 } // San Francisco coords
 const mapContainerStyle = {
-    height: "500px",
-    width: "500px",
+    height: "720px",
+    width: "600px",
 };
 
 const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
@@ -47,20 +47,24 @@ export default function Map(props){
     //     title: "Hello World!",
     // });
     const [weatherBool, setWeatherBool] = React.useState(false)
-    const onMapClick = React.useCallback((e) => {
-        placeMarkers((current) => [
-            ...current,
-            {
-                lat: e.latLng.lat(),
-                lng: e.latLng.lng(),
-                time: new Date(),
-            },
-        ]);
-    }, []);
+    // const onMapClick = React.useCallback((e) => {
+    //     placeMarkers((current) => [
+    //         ...current,
+    //         {
+    //             lat: e.latLng.lat(),
+    //             lng: e.latLng.lng(),
+    //             time: new Date(),
+    //         },
+    //     ]);
+    // }, []);
+    markers.push({ lat: 39.09423597068579, lng: -120.02614425979569 })
     const locations = [
         { lat: 39.09423597068579, lng: -120.02614425979569 },
-        { lat: -33.718234, lng: 150.363181 },
+        // { lat: -33.718234, lng: 150.363181 },
     ];
+    for(let i =0;i<locations.length;i++){
+        markers.push(locations[i])
+    }
     const getWeather= (latitude, longitude)=>{
         props.fetchWeather(latitude, longitude)
     }
@@ -79,7 +83,7 @@ export default function Map(props){
             zoom={8}
             center={sanFran}
             options= {styles}
-            onClick={onMapClick}
+            // onClick={onMapClick}
             >
                 {markers.map((marker) => (
                     <Marker
@@ -95,7 +99,7 @@ export default function Map(props){
                         // }}
                     />
                 ))}
-
+                
                 {selected ? (
                     <InfoWindow
                     position={{ lat: selected.lat, lng: selected.lng }}

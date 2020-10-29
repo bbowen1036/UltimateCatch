@@ -18,23 +18,40 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <>
-              <li><Link to={'/posts'}>All Posts</Link></li>
-              <li><Link to={'/profile'}>Profile</Link></li>
-              <li><Link to={'/posts/new'}>Write a Post</Link></li> 
-              <button onClick={this.logoutUser}>Logout</button>
-            </>
+            <div className="nav-links">
+              <div><Link to={'/posts'}>All Posts</Link></div>
+              <div><Link to={'/profile'}>Profile</Link></div>
+              <div><Link to={'/posts/new'}>Write a Post</Link></div> 
+              <button className="logoutBtn" onClick={this.logoutUser}>Logout</button>
+            </div>
         );
       } else {
         return (          
-              <> 
-                <li><Link className="nav-links" to={'/signup'}>Signup</Link></li>
-                <li><Link className="nav-links" to={'/login'}>Login</Link></li>
-              </>     
+              <div className="nav-links"> 
+                <div><Link className="nav-links" to={'/signup'}>Signup</Link></div>
+                <div className="last" ><Link className="nav-links" to={'/login'}>Login</Link></div>
+              </div>     
         );
       }
   }
 
+
+
+  logoLink() {
+    if (this.props.loggedIn) {
+      return (
+        <Link to="/main">
+          <img className="logo-img" src="https://ultimatecatch-seed.s3-us-west-1.amazonaws.com/logo_size_invert.jpg"></img>
+        </Link>
+      )
+    } else {
+      return (
+        <Link to="/">
+          <img className="logo-img" src="https://ultimatecatch-seed.s3-us-west-1.amazonaws.com/logo_size_invert.jpg"></img>
+        </Link>
+      )
+    }
+  }
   
 
   render() {
@@ -43,20 +60,8 @@ class NavBar extends React.Component {
     
       return (
         <div className="NavBar">
-          
-          <span href="javascript:void(0);" className="navbar-toggle" id="js-navbar-toggle" >
-            <i className="fa fa-bars"></i>
-          </span>
-          {/* <a href="#" className="logo">logo</a> */}
-          <img className="logo-img" src="https://ultimatecatch-seed.s3-us-west-1.amazonaws.com/logo_size_invert.jpg"></img>
-          <ul className="main-nav" id="js-menu">
-            <li>
-              <Link to={'/'} class="nav-links">Home</Link>
-            </li>       
-
+          <div className="nav-header-components">{this.logoLink()}</div>    
             { this.getLinks() }
-          </ul>
-          
         </div>
       );
   }

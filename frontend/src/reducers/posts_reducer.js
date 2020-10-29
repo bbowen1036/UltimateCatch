@@ -1,6 +1,6 @@
-import { RECEIVE_POSTS, RECEIVE_USER_POSTS, RECEIVE_NEW_POST } from '../actions/post_actions';
+import { RECEIVE_POSTS, RECEIVE_USER_POSTS, RECEIVE_NEW_POST, RECEIVE_POST } from '../actions/post_actions';
   
-  const PostsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+  const PostsReducer = (state = { all: {}, user: {}, new: undefined, post: {} }, action) => {
     Object.freeze(state);
     let newState = Object.assign({}, state);
     switch(action.type) {
@@ -13,7 +13,10 @@ import { RECEIVE_POSTS, RECEIVE_USER_POSTS, RECEIVE_NEW_POST } from '../actions/
       case RECEIVE_NEW_POST:
         // debugger
         newState.new = action.post.data
-        newState[action.post._id] = action.post
+        // newState[action.post._id] = action.post
+        return newState;
+      case RECEIVE_POST:
+        newState.post = action.post.data
         return newState;
       default:
         return state;
