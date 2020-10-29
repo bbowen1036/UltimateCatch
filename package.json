@@ -28,6 +28,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.12",
+    "@googlemaps/markerclustererplus": "^1.0.3",
     "@react-google-maps/api": "^1.13.0",
     "aws-sdk": "^2.780.0",
     "bcrypt": "^5.0.0",
@@ -45,6 +46,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react": "^17.0.1",
+    "react-leaflet-markercluster": "^2.0.0",
     "use-places-autocomplete": "^1.5.9",
     "validator": "^13.1.17"
   },

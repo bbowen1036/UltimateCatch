@@ -1,4 +1,4 @@
-import { getPosts, getPost, getUserPosts, writePost, likePost } from '../util/post_api_util';
+import { getPosts, getPost, getUserPosts, writePost, likePost, getRegionPosts } from '../util/post_api_util';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";
@@ -27,6 +27,12 @@ export const receivePost = post => ({
 
 export const fetchPosts = () => dispatch => (
   getPosts()
+    .then(posts => dispatch(receivePosts(posts)))
+    .catch(err => console.log(err))
+); 
+
+export const fetchPostsByRegion = (regionId) => dispatch => (
+  getRegionPosts(regionId)
     .then(posts => dispatch(receivePosts(posts)))
     .catch(err => console.log(err))
 );
