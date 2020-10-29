@@ -1,16 +1,35 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 65px;
+}
+
 .main-content{
     display: flex;
-    padding: 40px;
+    padding: 5px;
     flex-wrap: wrap;
+    
 }
 
 .sticky-map-container{
-    width: 500px;
+    width: auto;
+
     border: 10px solid red;
-    height: 500px;
+    height: 720px;
+    margin-right: 40px;
+ 
 }
 
 .posts-idx-main-container{
-    margin: auto;
+    /* margin: auto; */
+    border: 10px solid red;
+    height: 800px;
+    overflow: scroll;
+    /* margin: auto; */
+   
+
+
 }
 
