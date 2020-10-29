@@ -48,13 +48,34 @@ router.post("/",
     }
 )
 
-router.put('/:id', 
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-        console.log(req)
+// router.put('/:id', 
+//     passport.authenticate("jwt", { session: false }),
+//     (req, res) => {
+//         console.log("reached inside of add likes to post")
+//         // console.log(req)
+//         console.log(req.params.id)
+//         Post
+//             .findById(req.params.id)
+//             .then(post => post.likes.push(req.user._id))
+//     }
+// )
+
+router.post('/:id', passport.authenticate("jwt", { session: false }),(req, res) => {
+        console.log("reached inside of add likes to post")
+        // console.log(req)
+        console.log(req.params.id)
+        // console.log(Post.findById(req.params.id).likes.length)
         Post
-            .findById(req.params.id)
-            .then(post => post.likes.push(req.user._id))
+            .findByIdAndUpdate({_id: req.params.id}, { $push: {"likes": req.user._id}}, {upsert: true},
+            function(err,post){
+                if(err){
+                    console.log(err)
+                }else{
+                    console.log("updated post:", post)
+                }
+            }
+            ).then(post => {console.log(post.likes.length), res.json(post)})
+        // res.json(post)
     }
 )
 
