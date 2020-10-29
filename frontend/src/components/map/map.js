@@ -11,7 +11,7 @@ import {
 // } from "use-places-autocomplete";
 import mapStyles from './mapStyles'
 import { formatRelative } from "date-fns";
-
+/* global google */
 
 /// make sure to npm i -S @react-google-maps/api
 // npm install --save use-places-autocomplete
@@ -57,23 +57,12 @@ export default function Map(props){
             },
         ]);
     }, []);
-
+    const locations = [
+        { lat: 39.09423597068579, lng: -120.02614425979569 },
+        { lat: -33.718234, lng: 150.363181 },
+    ];
     const getWeather= (latitude, longitude)=>{
-        // let url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=ff73536f48ae4d3c3b9179833e630eaf`
         props.fetchWeather(latitude, longitude)
-            // .then((weather)=>{
-            //     if(weatherBool === false){
-            //         console.log("HEORTSODFO!!!")
-            //         console.log(weather.weather.data.weather[0].description)
-            //         setWeatherBool(true)
-            //         console.log("weatherBool" + weatherBool)
-            //         if(props.weather.data){
-
-            //             console.log(props.weather.data.weather[0].description)
-            //         }
-            //         return (<div>{weather.weather.data.weather[0].description}</div>)
-            //     }
-            // })
     }
     if(loadError){
         return "Error Loading Maps"
