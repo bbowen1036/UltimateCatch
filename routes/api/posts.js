@@ -63,18 +63,62 @@ router.post("/",
 router.post('/like/:id',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-    console.log(req.user)
     Post.findById(req.params.id)
-      .then(post => {
-        const newLike = {
-          user: req.user.id
-        }
+        .then(post => {
+            const newLike = {
+                user: req.user.id,
+                handle: req.user.handle
+            }
 
-        post.likes.unshift(newLike)
-        post.save().then(post => res.json(post))
+            let likeCheck = false;
+            
+            post.likes.forEach(item => {
+                if (String(item.user) === req.user.id){
+                    likeCheck = true;
+                }
+            })
 
+            if (!likeCheck){
+                post.likes.unshift(newLike)
+                post.save().then(post => res.json(post))
+            }
       })
       .catch(err => res.status(404).json(err))
   })
+
+
+  router.post('/unlike/:id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+    Post.findById(req.params.id)
+        .then(post => {
+            post.likes.forEach( (item, i) => {
+                if (String(item.user) === req.user.id){
+                    post.likes.splice(i, 1)
+                }
+            })
+
+            post.save().then(post => res.json(post))
+      })
+      .catch(err => res.status(404).json(err))
+  })
+
+router.post('/comment/:id',
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+  Post.findById(req.params.id)
+      .then(post => {
+          const newComment = {
+              user: req.user.id,
+              handle: req.user.handle,
+              text: req.body.text
+          }
+
+          post.comments.unshift(newComment)
+
+          post.save().then(post => res.json(post))
+    })
+    .catch(err => res.status(404).json(err))
+})
 
 module.exports = router;

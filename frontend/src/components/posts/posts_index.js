@@ -12,10 +12,27 @@ class PostIndex extends React.Component {
     }
   }
 
+  onComment = (id, commentData) => {
+
+    this.props.leaveComment(id, commentData)
+    setTimeout(() => {
+      this.props.fetchPosts()
+    }, 300)
+  }
+
   onLike = id => {
     const newLike = this.props.userId;
 
     this.props.heartPost(id, newLike)
+    setTimeout(() => {
+      this.props.fetchPosts()
+    }, 300)
+  }
+
+  onUnlike = id => {
+    const removeLike = this.props.userId;
+
+    this.props.unheartPost(id, removeLike)
     setTimeout(() => {
       this.props.fetchPosts()
     }, 300)
@@ -35,7 +52,7 @@ class PostIndex extends React.Component {
       return (
           <div className="posts-idx-container">
             {this.state.posts.map(post => (
-              <PostIndexItem key={post.id} post={post} onLike={this.onLike} fetchPost={this.props.fetchPost} heartPost={this.props.heartPost} />
+              <PostIndexItem key={post.id} user={this.props.user} onComment={this.onComment} userId={this.props.userId} post={post} onUnlike={this.onUnlike} onLike={this.onLike} fetchPost={this.props.fetchPost} heartPost={this.props.heartPost} />
             ))}
           </div>
       );

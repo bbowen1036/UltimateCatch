@@ -25,3 +25,13 @@ export const likePost = (id, likeData) => {
   // console.log(axios.put(`/api/posts/${id}`))
   return axios.post(`/api/posts/like/${id}`, likeData)
 }
+
+export const unlikePost = (id, likeData) => {
+  // console.log(id)
+  // console.log(axios.put(`/api/posts/${id}`))
+  return axios.post(`/api/posts/unlike/${id}`, likeData)
+}
+
+export const commentPost = (id, commentData) => {
+  return axios.post(`/api/posts/comment/${id}`, commentData)
+}

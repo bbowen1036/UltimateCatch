@@ -28,7 +28,7 @@ const sanFran = {
     lng: -122.431297
 } // San Francisco coords
 const mapContainerStyle = {
-    height: "720px",
+    height: "100vh",
     width: "600px",
 };
 let bool = false;
