@@ -60,23 +60,21 @@ router.post("/",
 //     }
 // )
 
-router.post('/:id', passport.authenticate("jwt", { session: false }),(req, res) => {
-        console.log("reached inside of add likes to post")
-        // console.log(req)
-        console.log(req.params.id)
-        // console.log(Post.findById(req.params.id).likes.length)
-        Post
-            .findByIdAndUpdate({_id: req.params.id}, { $push: {"likes": req.user._id}}, {upsert: true},
-            function(err,post){
-                if(err){
-                    console.log(err)
-                }else{
-                    console.log("updated post:", post)
-                }
-            }
-            ).then(post => {console.log(post.likes.length), res.json(post)})
-        // res.json(post)
-    }
-)
+router.post('/like/:id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+    console.log(req.user)
+    Post.findById(req.params.id)
+      .then(post => {
+        const newLike = {
+          user: req.user.id
+        }
+
+        post.likes.unshift(newLike)
+        post.save().then(post => res.json(post))
+
+      })
+      .catch(err => res.status(404).json(err))
+  })
 
 module.exports = router;

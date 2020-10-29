@@ -12,6 +12,15 @@ class PostIndex extends React.Component {
     }
   }
 
+  onLike = id => {
+    const newLike = this.props.userId;
+
+    this.props.heartPost(id, newLike)
+    setTimeout(() => {
+      this.props.fetchPosts()
+    }, 300)
+  }
+
   componentWillMount() {
     this.props.fetchPosts();
   }
@@ -19,9 +28,7 @@ class PostIndex extends React.Component {
   componentWillReceiveProps(newState) {
     this.setState({ posts: newState.posts });
   }
-  componentDidUpdate(){
-    this.props.fetchPosts();
-  }
+
   render() {
     if (this.state.posts.length === 0) {
       return (<div>There are no Posts</div>)
@@ -29,7 +36,7 @@ class PostIndex extends React.Component {
       return (
           <div className="posts-idx-container">
             {this.state.posts.map(post => (
-              <PostIndexItem key={post.id} post={post} heartPost={this.props.heartPost} />
+              <PostIndexItem key={post.id} post={post} onLike={this.onLike} fetchPost={this.props.fetchPost} heartPost={this.props.heartPost} />
             ))}
           </div>
       );
