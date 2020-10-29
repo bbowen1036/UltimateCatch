@@ -19,7 +19,9 @@ class PostIndex extends React.Component {
   componentWillReceiveProps(newState) {
     this.setState({ posts: newState.posts });
   }
-
+  componentDidUpdate(){
+    this.props.fetchPosts();
+  }
   render() {
     if (this.state.posts.length === 0) {
       return (<div>There are no Posts</div>)

@@ -11,8 +11,9 @@ import { RECEIVE_POSTS, RECEIVE_USER_POSTS, RECEIVE_NEW_POST } from '../actions/
         newState.user = action.posts.data;
         return newState;
       case RECEIVE_NEW_POST:
-        debugger
+        // debugger
         newState.new = action.post.data
+        newState[action.post._id] = action.post
         return newState;
       default:
         return state;
