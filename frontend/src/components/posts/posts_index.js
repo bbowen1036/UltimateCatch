@@ -20,6 +20,9 @@ class PostIndex extends React.Component {
 
   handleRegionChange(regionId){
     this.props.fetchPostsByRegion(regionId)
+    // setTimeout(() => {
+    //   this.props.fetchPosts()
+    // }, 300)
   }
 
   onComment = (id, commentData) => {
@@ -83,7 +86,7 @@ class PostIndex extends React.Component {
           <div className="main-content">
             <p>{console.log(this.state)}</p>
             <div className="map-container">
-              <div className="sticky-map-container"> <Map posts={this.state.posts} fetchPosts={this.props.fetchPosts} handleRegionChange={this.handleRegionChange} /> </div>
+            <div className="sticky-map-container"> <Map fetchWeather={this.props.fetchWeather} regions={this.props.regions} posts={this.state.posts} fetchPosts={this.props.fetchPosts} handleRegionChange={this.handleRegionChange} fetchRegions={this.props.fetchRegions} /> </div>
             </div>
             <div className="posts-idx-main-container">
               <div className="posts-idx-main" >

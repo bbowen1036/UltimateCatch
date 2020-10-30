@@ -1,15 +1,11 @@
 /* global google */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import {
     GoogleMap,
     useLoadScript,
     Marker,
     InfoWindow,
 } from "@react-google-maps/api";
-// import usePlacesAutocomplete, {
-//     getGeocode,
-//     getLatLng,
-// } from "use-places-autocomplete";
 import mapStyles from './mapStyles'
 import { formatRelative } from "date-fns";
 import { Link, withRouter } from 'react-router-dom';
@@ -35,20 +31,55 @@ const mapContainerStyle = {
 let bool = false;
 const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
 
-
 function Map(props){
+    console.log(props)
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
     })
-    const [markers, placeMarkers] = React.useState([{ lat: 39.09423597068579, lng: -120.02614425979569, time: new Date() },
-    { lat: 37.64794739271973, lng: -122.2829815703125, time: new Date() },
-    { lat: 39.05225234813503, lng: -122.8322979765625, time: new Date() }]);
+    // [{ lat: 39.09423597068579, lng: -120.02614425979569, time: new Date() },
+    // { lat: 37.64794739271973, lng: -122.2829815703125, time: new Date() },
+    //     { lat: 39.05225234813503, lng: -122.8322979765625, time: new Date() }]
+    const [markers, placeMarkers] = React.useState([]);
+    // if(props.regions.length> 0){
+
+    //     useEffect(() => {
+    //         props.fetchRegions().then( () => 
+    //         {for(let i =0;i<props.regions.length;i++){
+    //             props.regions[i].weather = props.fetchWeather(props.regions[i].coordinates.lat, props.regions[i].coordinates.lng)
+    //         }}
+    //         )
+    //     }, []);
+    // }
+
+    // for(let i = 0;i<props.regions.length;i++){
+    //     console.log(props.regions[i].weather)
+    // }
+
     // console.log(markers)
+    useEffect( () => {
+        props.fetchRegions();
+
+    }, [])
     useEffect(() => {
         if(!bool){
-
+            props.fetchRegions();
             props.fetchPosts();
+        }
+        console.log(props.regions[0])
+
+        if(props.regions.length > 0){
+            for(let i = 0;i<props.regions.length;i++){
+                let marker = { lat: props.regions[i].coordinates.lat, 
+                    lng: props.regions[i].coordinates.lng, 
+                    time: new Date(),
+                    region_id: props.regions[i]._id,
+                    // weather: props.regions[i].weather
+                    // weather: props.fetchWeather(props.regions[i].coordinates.lat, props.regions[i].coordinates.lng)
+                }
+                console.log(marker)
+                markers.push(marker)
+            }
         }
         bool = true;
     });
@@ -59,31 +90,6 @@ function Map(props){
     const getWeather = (latitude, longitude) => {
         props.fetchWeather(latitude, longitude)
     }
-
-    // const onMapClick = React.useCallback((e) => {
-    //     placeMarkers((current) => [
-    //         ...current,
-    //         {
-    //             lat: e.latLng.lat(),
-    //             lng: e.latLng.lng(),
-    //             time: new Date(),
-    //         },
-    //     ]);
-    // }, []);
-    // console.log(props.posts)
-    
-
-    let region1 = {
-        lat: 39.09423597068579,
-        lng: -120.02614425979569,
-        time: new Date(),
-        // weather: getWeather(39.09423597068579, -120.02614425979569)
-    }
-    const locations = [
-        { lat: 39.09423597068579, lng: -120.02614425979569 },
-        { lat: 37.64794739271973, lng: -122.2829815703125 },
-        { lat: 39.05225234813503, lng: -122.8322979765625 },
-    ];
 
     if(loadError){
         return "Error Loading Maps"
@@ -103,7 +109,6 @@ function Map(props){
         
 
     return(
-        // <div>Map?</div>
         <div>
             <GoogleMap id="map"
             mapContainerStyle={mapContainerStyle}
@@ -118,26 +123,27 @@ function Map(props){
                         position={{ lat: marker.lat, lng: marker.lng }}
                         onClick={() => {
                             setSelected(marker);
-                            // getWeather(marker.lat, marker.lng)
                         }}
-                        // icon={{
-                        //     origin: new window.google.maps.Point(0, 0),
-                        //     anchor: new window.google.maps.Point(15, 15),
-                        //     scaledSize: new window.google.maps.Size(30, 30),
-                        // }}
                     />
                 ))}
                 
                 {selected ? (
                     <InfoWindow
+                    
                     position={{ lat: selected.lat, lng: selected.lng }}
-                    // weatherBool = {weatherBool}
                     onCloseClick={() => {
                     setSelected(null);
-                    // setWeatherBool(true);
                     }}
                     >
                         <div>
+<<<<<<< HEAD
+                            <h2>
+                                We will put post modal here?
+                                <p>{selected.lat} {selected.lng}</p>
+                                <p onClick={() => props.handleRegionChange(selected.region_id)}> Go to Posts </p>
+                            </h2>
+                            <p>{formatRelative(selected.time, new Date())}</p>
+=======
                             {/* <h2> */}
                                 {/* We will put post modal here? */}
                                 {/* <p>{selected.lat} {selected.lng}</p>
@@ -157,6 +163,7 @@ function Map(props){
                                 {/* <Post fetchpost={props.fetchPost} lat={selected.lat} lng={selected.lng}/> */}
                             {/* </h2> */}
                             {/* <p>{formatRelative(selected.time, new Date())}</p> */}
+>>>>>>> bda23a5011193b6fd757a425c870f1f53a7e80fd
                         </div>
                     </InfoWindow>
                 ) : null}
