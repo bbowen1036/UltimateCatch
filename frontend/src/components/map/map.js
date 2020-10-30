@@ -29,8 +29,6 @@ const mapContainerStyle = {
     width: "420px",
 };
 let bool = false;
-const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
-
 function Map(props){
     console.log(props)
     const { isLoaded, loadError } = useLoadScript({
@@ -66,14 +64,18 @@ function Map(props){
             props.fetchRegions();
             props.fetchPosts();
         }
-        console.log(props.regions[0])
-
+        
         if(props.regions.length > 0){
+            console.log("regions")
+            console.log(props.regions[0])
+            console.log(props.regions[0].posts)
             for(let i = 0;i<props.regions.length;i++){
                 let marker = { lat: props.regions[i].coordinates.lat, 
                     lng: props.regions[i].coordinates.lng, 
                     time: new Date(),
                     region_id: props.regions[i]._id,
+                    posts: props.regions[i].posts
+                    //put arary of likes
                     // weather: props.regions[i].weather
                     // weather: props.fetchWeather(props.regions[i].coordinates.lat, props.regions[i].coordinates.lng)
                 }
@@ -98,6 +100,35 @@ function Map(props){
         return <div>"Loading Map!"</div>
     }
 
+    // const mostLikedPost = () => {
+    //     let most = props.posts[0];
+    //     props.posts.forEach(post => {
+    //         post.likes.length > most.likes ? most = post : most = most;
+    //     });
+    //     return most;
+    // };
+
+    // const mostLikedPost = (id) => {
+    //     let arr = []
+    //     let max = -1;
+    //     let post = null;
+    //     for(let i = 0;i <props.posts.length; i++){
+    //         console.log(props.posts[i].region)
+    //         console.log(id)
+    //         if((props.posts[i].region === id) && (props.posts[i].likes.length > max)){
+    //             max = props.posts[i].likes.length
+    //             post = props.posts[i]
+    //         }
+    //     }
+    //     if(post === null){
+    //         console.log(props.posts)
+    //         console.log(props.posts[0])
+
+    //         return props.posts[0]
+    //     }
+    //     return post;
+    // }
+    
     const mostLikedPost = () => {
         let most = props.posts[0];
         props.posts.forEach(post => {
@@ -123,6 +154,7 @@ function Map(props){
                         position={{ lat: marker.lat, lng: marker.lng }}
                         onClick={() => {
                             setSelected(marker);
+                            marker.mostLikedPost = mostLikedPost(marker.region_id)
                         }}
                     />
                 ))}
@@ -136,17 +168,17 @@ function Map(props){
                     }}
                     >
                         <div>
-                
+                            {/* {mostLikedPost(selected.region_id)} */}
                             {/* <h2> */}
                                 {/* We will put post modal here? */}
                                 {/* <p>{selected.lat} {selected.lng}</p>
                                 <p>{props.posts.sort_id} </p> */}
-                                    <p className="see-posts" onClick={() => props.handleRegionChange(selected.region_id)}>See more posts from here!</p>
+                            <p className="see-posts" onClick={() => {props.handleRegionChange(selected.region_id); mostLikedPost(selected.region_id)}}>See more posts from here!</p>
                                 <div className="post-preview">
                                     <div className="modal-picture-container">
-                                        <img id="modal-picture" src={mostLikedPost().picture} />
+                                        <img id="modal-picture" src={mostLikedPost(selected.mostLikedPost).picture} />
                                     </div>
-                                    <p className="post-preview-text">{mostLikedPost().text} </p>
+                                <p className="post-preview-text">{mostLikedPost(selected.mostLikedPost).text} </p>
                                 </div>
                                 {/* <p>{props.posts[0].date} </p> */}
                                 {/* <Link to={`/api/posts/${props.posts[0]._id}`}> Go to Post </Link> */}
