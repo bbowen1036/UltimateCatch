@@ -60,6 +60,7 @@
     justify-content: left;
     height: 70px;
     border-bottom: 1px solid rgba(206, 202, 202, 0.945); 
+    /* font-weight: bold; */
 }
 
 .comments {
@@ -109,7 +110,7 @@
     background-color:  #e2f8ff;
     order: 1;
     width: 57%;
-    height: 65px;
+    height: 55px;
     text-align: left;
     flex-wrap: wrap;
     padding: 8px;
@@ -118,6 +119,14 @@
     text-decoration: none;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
+
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 2.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 2.5px 8px rgba(0, 0, 0, 0.06),
+    0 2.3px 8.9px rgba(0, 0, 0, 0.072),
+    0 2.8px 8.4px rgba(0, 0, 0, 0.086),
+    0 4px 8px rgba(0, 0, 0, 0.12)
 }
 
 .like-heart,.comment-icon{
