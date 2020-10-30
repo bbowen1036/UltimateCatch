@@ -26,13 +26,19 @@ class PostForm extends React.Component{
 
     render(){
         return(
-            <div className="post-form-container">
-                <h2>Make a post</h2>
-                <form className="post-form" onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.updateField("text")} placeholder="Check out this catch!"/>
-                    <input type="text" onChange={this.updateField("picture")} placeholder="Picture URL"/>
-                    <button type="submit">Create</button>
-                </form>
+            <div className="form-body">
+
+                <div className="post-form-container">
+                    <h2>Make a post</h2>
+                    <form className="post-form" onSubmit={this.handleSubmit}>
+                        
+                        <input type="text" onChange={this.updateField("text")} placeholder="Check out this catch!"/>
+                        <br></br>
+                        <input type="text" onChange={this.updateField("picture")} placeholder="Picture URL"/>
+                        <br></br>
+                        <button className="create-bttn" type="submit">Create</button>
+                    </form>
+                </div>
             </div>
         )
     }
