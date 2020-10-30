@@ -26,7 +26,7 @@ const sanFran = {
 } // San Francisco coords
 const mapContainerStyle = {
     height: "100vh",
-    width: "460px",
+    width: "420px",
 };
 let bool = false;
 function Map(props){
@@ -107,26 +107,36 @@ function Map(props){
     //     });
     //     return most;
     // };
-    const mostLikedPost = (id) => {
-        let arr = []
-        let max = -1;
-        let post = null;
-        for(let i = 0;i <props.posts.length; i++){
-            console.log(props.posts[i].region)
-            console.log(id)
-            if((props.posts[i].region === id) && (props.posts[i].likes.length > max)){
-                max = props.posts[i].likes.length
-                post = props.posts[i]
-            }
-        }
-        if(post === null){
-            console.log(props.posts)
-            console.log(props.posts[0])
 
-            return props.posts[0]
-        }
-        return post;
-    }
+    // const mostLikedPost = (id) => {
+    //     let arr = []
+    //     let max = -1;
+    //     let post = null;
+    //     for(let i = 0;i <props.posts.length; i++){
+    //         console.log(props.posts[i].region)
+    //         console.log(id)
+    //         if((props.posts[i].region === id) && (props.posts[i].likes.length > max)){
+    //             max = props.posts[i].likes.length
+    //             post = props.posts[i]
+    //         }
+    //     }
+    //     if(post === null){
+    //         console.log(props.posts)
+    //         console.log(props.posts[0])
+
+    //         return props.posts[0]
+    //     }
+    //     return post;
+    // }
+    
+    const mostLikedPost = () => {
+        let most = props.posts[0];
+        props.posts.forEach(post => {
+            post.likes.length > most.likes.length ? most = post : most = most;
+        });
+        return most;
+    };
+        
         
 
     return(
