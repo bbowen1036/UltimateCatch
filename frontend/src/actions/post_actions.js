@@ -4,6 +4,7 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_USER_POSTS = "RECEIVE_USER_POSTS";
 export const RECEIVE_NEW_POST = "RECEIVE_NEW_POST";
 export const RECEIVE_POST = "RECEIVE_POST";
+export const RECEIVE_REGION_POSTS = "RECEIVE_REGION_POSTS";
 
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
@@ -25,6 +26,11 @@ export const receivePost = post => ({
   post
 })
 
+export const receiveRegionPosts = posts => ({
+  type: RECEIVE_REGION_POSTS,
+  posts
+})
+
 export const fetchPosts = () => dispatch => (
   getPosts()
     .then(posts => dispatch(receivePosts(posts)))
@@ -33,7 +39,7 @@ export const fetchPosts = () => dispatch => (
 
 export const fetchPostsByRegion = (regionId) => dispatch => (
   getRegionPosts(regionId)
-    .then(posts => dispatch(receivePosts(posts)))
+    .then(posts => dispatch(receiveRegionPosts(posts)))
     .catch(err => console.log(err))
 );
 

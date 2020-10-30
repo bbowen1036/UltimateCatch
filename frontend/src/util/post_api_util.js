@@ -3,6 +3,7 @@ import axios from 'axios';
 export const getPosts = () => {
   return axios.get('/api/posts')
 };
+
 export const getRegionPosts = (regionId) => {
   return axios.get(`/api/posts/${regionId}`)
 };

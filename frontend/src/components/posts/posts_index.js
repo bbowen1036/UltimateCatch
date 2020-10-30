@@ -39,7 +39,11 @@ class PostIndex extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchPosts();
+    if (this.props.posts.region){
+      this.props.fetchPostsByRegion(this.props.posts.region.id);
+    } else {
+      this.props.fetchPosts();
+    }
   }
 
   componentWillReceiveProps(newState) {

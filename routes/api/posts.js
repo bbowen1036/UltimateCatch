@@ -21,6 +21,13 @@ router.get("/user/:user_id", (req, res) => {
         .catch(err => res.status(400).json(err));
 });
 
+router.get("/region/:region_id", (req, res) => {
+    Post 
+        .find({ user: req.params.region_id })
+        .then(posts => res.json(posts))
+        .catch(err => res.status(400).json(err));
+});
+
 router.get("/:id", (req, res) => {
     Post
         .findById(req.params.id)
