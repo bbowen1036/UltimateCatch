@@ -101,7 +101,7 @@ function Map(props){
     const mostLikedPost = () => {
         let most = props.posts[0];
         props.posts.forEach(post => {
-            post.likes.length > most.likes ? most = post : most = most;
+            post.likes.length > most.likes.length ? most = post : most = most;
         });
         return most;
     };
@@ -136,11 +136,12 @@ function Map(props){
                     }}
                     >
                         <div>
+                
                             {/* <h2> */}
                                 {/* We will put post modal here? */}
                                 {/* <p>{selected.lat} {selected.lng}</p>
                                 <p>{props.posts.sort_id} </p> */}
-                                <p className="see-posts" onClick={() => props.handleRegionChange('5f9b444ff221afb143af1742')}>See more posts from here!</p>
+                                    <p className="see-posts" onClick={() => props.handleRegionChange(selected.region_id)}>See more posts from here!</p>
                                 <div className="post-preview">
                                     <div className="modal-picture-container">
                                         <img id="modal-picture" src={mostLikedPost().picture} />
