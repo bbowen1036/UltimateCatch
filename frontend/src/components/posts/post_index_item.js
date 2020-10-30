@@ -43,7 +43,7 @@ class PostIndexItem extends React.Component{
                 <div className="post-info">
                     <div className="post-header">
 
-                        <div className="username">Username</div>
+                        <div className="username">{this.props.post.handle}</div>
                         <img className="badge" src="https://toppng.com/uploads/preview/instagram-verified-logo-11549386033fpzr9vfugd.png"></img>
                     </div>
 

@@ -16,7 +16,6 @@ export const getUserPosts = id => {
 };
 
 export const writePost = data => {
-  debugger
   return axios.post('/api/posts/', data)
 }
 
