@@ -1,3 +1,17 @@
+/* .posts-idx-item{
+    width: 500px;
+    display: flex;
+    justify-content: center;
+
+    margin-left: 40px;
+    flex-direction: row;
+    padding-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid coral;
+
+
+}
 .posts-idx-container{
     width: 650px;
     margin: auto;
@@ -10,32 +24,33 @@
     box-sizing: border-box;
 }
 
-.posts-idx-item{
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    flex-wrap: wrap;
-    padding-bottom: 40px;
-    margin-top: 20px;
-}
 
 .post-pic-container{
+    
+    border: 2px solid chartreuse;
+
     width: 325px;
     height: 200px;
     margin-right: 20px;
+    
 }
 
 .post-pic{
     max-width: 325px;
     border-radius: 10px;
+    border: 1px solid grey;
 }
 
 .post-info{
+    border: 2px solid chartreuse;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    width: 100%;
-    /* padding: 0px 20px; */
+    width: auto;
+  
     position: relative;
+
+    left: 90px;
 }
 
 .liked-heart{
@@ -50,10 +65,11 @@
 }
 
 .comments{
-    width: 250px;
+    width: 260px;
     border-radius: 10px;
     overflow: auto;
     height: 200px;
+    border: 2px solid blue;
 }
 
 .comments-list{
@@ -122,4 +138,55 @@
     display: flex;
     flex-wrap: wrap;
     width: 95px;
+} */
+
+.posts-idx-item{
+    /* position: absolute; */
+    position: sticky;
+    top: 65px;
+    border: 2px solid red;
+    display: inline;
+    display: flex;
+    font-family: "Open Sans", Arial, sans-serif;
+    min-height: 60vh;
+    background-color: #fafafa;
+    color: #262626;
+    width: 875px;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
+
+}
+
+
+.post-info {
+    border: 2px solid chartreuse;
+    width: 330px;
+    margin-right: 80px;
+}
+
+
+.post-pic{
+    width: 345px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 70px;
+    border-bottom: 1px solid rgba(206, 202, 202, 0.945); 
+    font-family: "Open Sans", Arial, sans-serif;  
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+}
+
+.comments-list {
+    border: 2px solid blue;
+    min-height: 30vh;
 }

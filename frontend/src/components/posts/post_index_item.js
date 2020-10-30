@@ -35,11 +35,23 @@ class PostIndexItem extends React.Component{
 
         return(
             <div className="posts-idx-item">
-                <div className="top-container">
-                    <div className="post-pic-container">
-                        <img className="post-pic" src={this.props.post.picture} />
+                <div className="post-pic-container">
+                    <img className="post-pic" src={this.props.post.picture} />
+                </div>
+              
+
+                <div className="post-info">
+                    <div className="post-header">
+
+                        <div className="username">username</div>
                     </div>
+
                     <div className="comments">
+
+                        <div className="post-text-container">          
+                            <h3 className="post-text">{this.props.post.text}</h3>
+                        </div> 
+
                         <ul className="comments-list">
                             {this.props.post.comments.map(comment => {
                                 return <li className="user-comment">
@@ -51,15 +63,17 @@ class PostIndexItem extends React.Component{
                             })}
                         </ul>
                     </div>
-                </div>
-                <div className="post-info">
+
+
                     <div className="likes-container">
-                        {heartIcon}
-                        <h3 className="like-count">{this.props.post.likes.length} likes</h3>
-                    </div>        
-                    <div className="post-text-container">          
-                        <h3 className="post-text">{this.props.post.text}</h3>
-                    </div>  
+                        <div>{heartIcon}</div>
+                        <div>
+                            <h3 className="like-count">{this.props.post.likes.length} likes</h3>
+                        </div>
+                    </div>   
+
+                     
+
                     <div className="comment-container">
                         <input className="comment-input" placeholder="Leave a comment!" onChange={this.handleUpdate("text")} type="text" />
                         <FontAwesomeIcon className="comment-icon" icon={faComment} onClick={() => this.props.onComment(this.props.post._id, this.state)}/>
