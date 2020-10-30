@@ -34,7 +34,12 @@ const PostSchema = new Schema({
         text: {
             type: String
         }
-    }]
+    }],
+    picture: {
+        
+        type: String,
+        
+    }
 
 });
 

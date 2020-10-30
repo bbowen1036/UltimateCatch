@@ -19,11 +19,11 @@ const App = () => (
     <Switch>
 
         <ProtectedRoute exact path="/main" component={MainPage} />
+        <ProtectedRoute exact path="/posts" component={PostsIndexContainer} />
+        <ProtectedRoute exact path="/posts/new" component={PostFormContainer} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path='/demo' component={DemoFormContainer} />
-        <Route exact path="/posts" component={PostsIndexContainer} />
-        <Route exact path="/posts/new" component={PostFormContainer} />
         <AuthRoute exact path="/" component={SplashPage} />
     </Switch>
   </div>

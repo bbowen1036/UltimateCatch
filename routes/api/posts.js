@@ -36,10 +36,10 @@ router.post("/",
         if(!isValid){
             return res.status(400).json(errors);
         }
-        // debugger
         const newPost = new Post({
             user: req.user.id,
-            text: req.body.text
+            text: req.body.text,
+            picture: req.body.picture
         });
 
         newPost
