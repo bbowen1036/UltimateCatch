@@ -22,9 +22,12 @@
 .post-pic-container{
     width: 325px;
     height: 200px;
-    background-color: pink;
-    border-radius: 10px;
     margin-right: 20px;
+}
+
+.post-pic{
+    max-width: 325px;
+    border-radius: 10px;
 }
 
 .post-info{
