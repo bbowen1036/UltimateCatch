@@ -23,10 +23,12 @@
     width: 325px;
     height: 200px;
     margin-right: 20px;
+    text-align: left;
 }
 
 .post-pic{
     max-width: 325px;
+    max-height: 200px;
     border-radius: 10px;
 }
 
