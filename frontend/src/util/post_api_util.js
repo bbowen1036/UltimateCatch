@@ -5,7 +5,7 @@ export const getPosts = () => {
 };
 
 export const getRegionPosts = (regionId) => {
-  return axios.get(`/api/posts/${regionId}`)
+  return axios.get(`/api/posts/region/${regionId}`)
 };
 
 export const getPost = id => {
