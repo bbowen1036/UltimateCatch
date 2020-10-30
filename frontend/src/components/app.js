@@ -10,6 +10,8 @@ import MapContainer from './map/map_container';
 import PostsIndexContainer from './posts/posts_index_container';
 import PostFormContainer from './posts/post_form_container';
 import SplashPage from './splash/splash';
+// import FooterContainer from './footer/footer_container'
+import Profile from './profile/profile'
 
 const App = () => (
   <div>
@@ -21,11 +23,15 @@ const App = () => (
         <ProtectedRoute exact path="/main" component={MainPage} />
         <ProtectedRoute exact path="/posts" component={PostsIndexContainer} />
         <ProtectedRoute exact path="/posts/new" component={PostFormContainer} />
+        <ProtectedRoute exact path="/profile" component={Profile} />
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <AuthRoute exact path='/demo' component={DemoFormContainer} />
         <AuthRoute exact path="/" component={SplashPage} />
     </Switch>
+    <footer>
+      {/* <FooterContainer /> */}
+    </footer>
   </div>
 );
 
