@@ -6,7 +6,6 @@ import {fetchRegions} from '../../actions/region_actions'
 import { fetchWeather } from '../../actions/weather_actions'
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     posts: Object.values(state.entities.posts.all),
     regionPosts: Object.values(state.entities.posts.region),
@@ -28,7 +27,7 @@ const mapDispatchToProps = dispatch => {
     fetchPostsByRegion: (regionId) => dispatch(fetchPostsByRegion(regionId)),
     fetchRegions: () => dispatch(fetchRegions()),
     fetchWeather: (lat, lng) => dispatch(fetchWeather(lat, lng)),
-
+    fetchPost: (id) => dispatch(fetchPost(id))
   };
 };
 

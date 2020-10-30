@@ -17,7 +17,13 @@ const RegionSchema = new Schema({
     lng:{
         type: Number,
         default: 0
-    }
+    },
+    posts: [{
+        post: {
+            type: Schema.Types.ObjectId,
+            ref: "posts"
+        },
+    }]
 });
 
 const Region = mongoose.model('region', RegionSchema);
