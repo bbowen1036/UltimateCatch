@@ -101,7 +101,7 @@ function Map(props){
     const mostLikedPost = () => {
         let most = props.posts[0];
         props.posts.forEach(post => {
-            post.likes.length > most.likes ? most = post : most = most;
+            post.likes.length > most.likes.length ? most = post : most = most;
         });
         return most;
     };
