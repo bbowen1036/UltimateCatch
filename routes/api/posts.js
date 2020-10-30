@@ -22,9 +22,9 @@ router.get("/user/:user_id", (req, res) => {
         .catch(err => res.status(400).json(err));
 });
 
-router.get("/region/:region_id", (req, res) => {
+router.get("/region/:regionId", (req, res) => {
     Post 
-        .find({ region: req.params.region_id })
+        .find({ region: req.params.regionId })
         .then(posts => res.json(posts))
         .catch(err => res.status(400).json(err));
 });
@@ -45,7 +45,7 @@ router.post("/",
             return res.status(400).json(errors);
         }
         const newPost = new Post({
-            user: req.user.id,
+            users: req.user.handle,
             text: req.body.text,
             picture: req.body.picture
         });
