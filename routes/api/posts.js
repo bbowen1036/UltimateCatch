@@ -47,9 +47,10 @@ router.post("/",
             return res.status(400).json(errors);
         }
         const newPost = new Post({
-            user: req.user.id,
+            users: req.user.id,
             text: req.body.text,
-            picture: req.body.picture
+            picture: req.body.picture,
+            handle: req.user.handle
         });
 
         newPost
@@ -124,7 +125,7 @@ router.post('/comment/:id',
               text: req.body.text
           }
 
-          post.comments.unshift(newComment)
+          post.comments.push(newComment)
 
           post.save().then(post => res.json(post))
     })
