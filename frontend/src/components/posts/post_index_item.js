@@ -36,7 +36,9 @@ class PostIndexItem extends React.Component{
         return(
             <div className="posts-idx-item">
                 <div className="top-container">
-                    <div className="post-pic-container"></div>
+                    <div className="post-pic-container">
+                        <img className="post-pic" src={this.props.post.picture} />
+                    </div>
                     <div className="comments">
                         <ul className="comments-list">
                             {this.props.post.comments.map(comment => {
