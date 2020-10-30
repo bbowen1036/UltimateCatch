@@ -13,6 +13,7 @@ import {
 import mapStyles from './mapStyles'
 import { formatRelative } from "date-fns";
 import { Link, withRouter } from 'react-router-dom';
+import './map.css';
 
 /// make sure to npm i -S @react-google-maps/api
 // npm install --save use-places-autocomplete
@@ -29,7 +30,7 @@ const sanFran = {
 } // San Francisco coords
 const mapContainerStyle = {
     height: "100vh",
-    width: "600px",
+    width: "460px",
 };
 let bool = false;
 const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
@@ -91,6 +92,16 @@ function Map(props){
         return <div>"Loading Map!"</div>
     }
 
+    const mostLikedPost = () => {
+        let most = props.posts[0];
+        props.posts.forEach(post => {
+            post.likes.length > most.likes ? most = post : most = most;
+        });
+        return most;
+    };
+        
+        
+
     return(
         // <div>Map?</div>
         <div>
@@ -127,19 +138,25 @@ function Map(props){
                     }}
                     >
                         <div>
-                            <h2>
-                                We will put post modal here?
-                                <p>{selected.lat} {selected.lng}</p>
-                                <p>{props.posts[0]._id} </p>
-                                <p>{props.posts[0].text} </p>
-                                <p>{props.posts[0].date} </p>
+                            {/* <h2> */}
+                                {/* We will put post modal here? */}
+                                {/* <p>{selected.lat} {selected.lng}</p>
+                                <p>{props.posts.sort_id} </p> */}
+                                <p className="see-posts" onClick={() => props.handleRegionChange('5f9b444ff221afb143af1742')}>See more posts from here!</p>
+                                <div className="post-preview">
+                                    <div className="modal-picture-container">
+                                        <img id="modal-picture" src={mostLikedPost().picture} />
+                                    </div>
+                                    <p className="post-preview-text">{mostLikedPost().text} </p>
+                                </div>
+                                {/* <p>{props.posts[0].date} </p> */}
                                 {/* <Link to={`/api/posts/${props.posts[0]._id}`}> Go to Post </Link> */}
-                                <p onClick={() => props.handleRegionChange('5f9b444ff221afb143af1742')}> Go to Posts </p>
+                                
                                 {/* <p>{props.weather.bool.weather[0].description ? <div>{props.weather.data.weather[0].description}</div> : getWeather(selected.lat,selected.lng)}</p> */}
                                 
                                 {/* <Post fetchpost={props.fetchPost} lat={selected.lat} lng={selected.lng}/> */}
-                            </h2>
-                            <p>{formatRelative(selected.time, new Date())}</p>
+                            {/* </h2> */}
+                            {/* <p>{formatRelative(selected.time, new Date())}</p> */}
                         </div>
                     </InfoWindow>
                 ) : null}

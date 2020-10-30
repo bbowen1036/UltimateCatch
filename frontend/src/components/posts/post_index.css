@@ -25,6 +25,9 @@
     margin-bottom: 15px;
 }
 
+.posts-idx-container{
+    padding: 0px 20px;
+}
 
 .post-info {
     /* border: 2px solid chartreuse; */

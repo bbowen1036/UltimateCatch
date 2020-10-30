@@ -6,9 +6,9 @@ import post_index_item from './post_index_item';
 const mapStateToProps = (state) => {
   return {
     posts: Object.values(state.entities.posts.all),
+    regionPosts: Object.values(state.entities.posts.region),
     userId: state.session.user.id,
-    user: state.session.user,
-    regionId: state.posts
+    user: state.session.user
   };
 };
 
