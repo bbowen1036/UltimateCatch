@@ -129,7 +129,7 @@ function Map(props){
                 ))}
                 
                 {selected ? (
-                    <InfoWindow className="modal-window"
+                    <InfoWindow
                     position={{ lat: selected.lat, lng: selected.lng }}
                     // weatherBool = {weatherBool}
                     onCloseClick={() => {
@@ -145,7 +145,7 @@ function Map(props){
                                 <p className="see-posts" onClick={() => props.handleRegionChange('5f9b444ff221afb143af1742')}>See more posts from here!</p>
                                 <div className="post-preview">
                                     <div className="modal-picture-container">
-                                        <img className="modal-picture" src={mostLikedPost().picture} />
+                                        <img id="modal-picture" src={mostLikedPost().picture} />
                                     </div>
                                     <p className="post-preview-text">{mostLikedPost().text} </p>
                                 </div>
