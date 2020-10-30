@@ -82,7 +82,7 @@
     /* border: 2px solid blue; */
     /* min-height: 30vh; */
     line-height: 1.5;
-    overflow: scroll;
+    overflow: auto;
     /* max-height: 40covh; */
 
     height: 300px;
