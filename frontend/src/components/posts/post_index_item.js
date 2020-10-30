@@ -43,7 +43,8 @@ class PostIndexItem extends React.Component{
                 <div className="post-info">
                     <div className="post-header">
 
-                        <div className="username">username</div>
+                        <div className="username">{this.props.post.handle}</div>
+                        <img className="badge" src="https://toppng.com/uploads/preview/instagram-verified-logo-11549386033fpzr9vfugd.png"></img>
                     </div>
 
                     <div className="comments">
@@ -55,7 +56,10 @@ class PostIndexItem extends React.Component{
                         <ul className="comments-list">
                             {this.props.post.comments.map(comment => {
                                 return <li className="user-comment">
-                                    <p className="comment-owner">{comment.handle}:</p>
+                                    <div>   
+
+                                        <p className="comment-owner">{comment.handle}:</p>
+                                    </div>
                                     <div className="comment-body">
                                         <p>{comment.text}</p>
                                     </div>
@@ -66,7 +70,7 @@ class PostIndexItem extends React.Component{
 
 
                     <div className="likes-container">
-                        <div>{heartIcon}</div>
+                        <div className="like-heart">{heartIcon}</div>
                         <div>
                             <h3 className="like-count">{this.props.post.likes.length} likes</h3>
                         </div>
@@ -75,7 +79,7 @@ class PostIndexItem extends React.Component{
                      
 
                     <div className="comment-container">
-                        <input className="comment-input" placeholder="Leave a comment!" onChange={this.handleUpdate("text")} type="text" />
+                        <textarea className="comment-input" placeholder="Leave a comment!" onChange={this.handleUpdate("text")} type="text" />
                         <FontAwesomeIcon className="comment-icon" icon={faComment} onClick={() => this.props.onComment(this.props.post._id, this.state)}/>
                     </div>
                 </div>
