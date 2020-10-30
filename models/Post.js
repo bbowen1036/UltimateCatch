@@ -36,9 +36,11 @@ const PostSchema = new Schema({
         }
     }],
     picture: {
-        
-        type: String,
-        
+        type: String
+    },
+    region: {
+        type: Schema.Types.ObjectId,
+        ref: 'regions'
     }
 
 });

@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../../models/Post")
+const Region = require("../../models/Region")
 const passport = require("passport");
 const validatePostInput = require("../../validation/posts")
-
+// ObjectID = require('mongodb').ObjectID
 router.get("/test", (req, res) => res.json({ msg: "This is the posts route" }));
 
 router.get("/", (req, res) => {
@@ -17,6 +18,15 @@ router.get("/", (req, res) => {
 router.get("/user/:user_id", (req, res) => {
     Post 
         .find({ user: req.params.user_id })
+        .then(posts => res.json(posts))
+        .catch(err => res.status(400).json(err));
+});
+
+router.get("/region/:region_id", (req, res) => {
+    console.log("IN REGION/REGIONID-=-=-=-=-=-=-=-=-")
+    // console.log(ObjectID(req.params.region_id))
+    Post 
+        .find({ region: req.params.region_id })
         .then(posts => res.json(posts))
         .catch(err => res.status(400).json(err));
 });

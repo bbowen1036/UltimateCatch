@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PostIndexItem from './post_index_item';
-import Map from '../map/map';
 import './post_index.css';
 
 class PostIndex extends React.Component {
@@ -11,15 +10,6 @@ class PostIndex extends React.Component {
     this.state = {
       posts: []
     }
-
-    this.handleRegionChange = this.handleRegionChange.bind(this);
-  }
-
-  handleRegionChange(regionId){
-    this.props.fetchPostsByRegion(regionId)
-    setTimeout(() => {
-      this.props.fetchPosts()
-    }, 300)
   }
 
   onComment = (id, commentData) => {
@@ -59,26 +49,17 @@ class PostIndex extends React.Component {
   componentWillReceiveProps(newState) {
     this.setState({ posts: newState.posts });
   }
-
+  
   render() {
     if (this.state.posts.length === 0) {
       return (<div>There are no Posts</div>)
     } else {
       return (
-          <div className="main-content">
-            <div className="map-container">
-              <div className="sticky-map-container"> <Map posts={this.props.posts} fetchPosts={this.props.fetchPosts} handleRegionChange={this.handleRegionChange} /> </div>
-            </div>
-            <div className="posts-idx-main-container">
-              <div className="posts-idx-main" >
-                <div className="posts-idx-container">
-                  {this.state.posts.map(post => (
-                    <PostIndexItem key={post.id} user={this.props.user} onComment={this.onComment} userId={this.props.userId} post={post} onUnlike={this.onUnlike} onLike={this.onLike} fetchPost={this.props.fetchPost} heartPost={this.props.heartPost} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>          
+          <div className="posts-idx-container">
+            {this.state.posts.map(post => (
+              <PostIndexItem key={post.id} user={this.props.user} onComment={this.onComment} userId={this.props.userId} post={post} onUnlike={this.onUnlike} onLike={this.onLike} fetchPost={this.props.fetchPost} heartPost={this.props.heartPost} />
+            ))}
+          </div>
       );
     }
   }

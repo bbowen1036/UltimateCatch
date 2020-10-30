@@ -35,7 +35,7 @@ let bool = false;
 const myLatLng = { lat: 39.09423597068579, lng: -120.02614425979569 };
 
 
-export default function Map(props){
+function Map(props){
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
@@ -43,7 +43,7 @@ export default function Map(props){
     const [markers, placeMarkers] = React.useState([{ lat: 39.09423597068579, lng: -120.02614425979569, time: new Date() },
     { lat: 37.64794739271973, lng: -122.2829815703125, time: new Date() },
     { lat: 39.05225234813503, lng: -122.8322979765625, time: new Date() }]);
-    console.log(markers)
+    // console.log(markers)
     useEffect(() => {
         if(!bool){
 
@@ -133,7 +133,8 @@ export default function Map(props){
                                 <p>{props.posts[0]._id} </p>
                                 <p>{props.posts[0].text} </p>
                                 <p>{props.posts[0].date} </p>
-                                <Link to={`/api/posts/${props.posts[0]._id}`}> Go to Post </Link>
+                                {/* <Link to={`/api/posts/${props.posts[0]._id}`}> Go to Post </Link> */}
+                                <p onClick={() => props.handleRegionChange('5f9b444ff221afb143af1742')}> Go to Posts </p>
                                 {/* <p>{props.weather.bool.weather[0].description ? <div>{props.weather.data.weather[0].description}</div> : getWeather(selected.lat,selected.lng)}</p> */}
                                 
                                 {/* <Post fetchpost={props.fetchPost} lat={selected.lat} lng={selected.lng}/> */}
@@ -147,4 +148,4 @@ export default function Map(props){
     )
 }
 
-// export default Map
+export default Map
