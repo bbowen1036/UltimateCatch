@@ -9,12 +9,12 @@ const mapStateToProps = (state) => {
   console.log(state)
   return {
     posts: Object.values(state.entities.posts.all),
+    regionPosts: Object.values(state.entities.posts.region),
     userId: state.session.user.id,
     user: state.session.user,
     regionId: state.posts,
     regions: state.entities.regions,
     weather: state.entities.weather,
-
     // region: state.
   };
 };

@@ -19,6 +19,7 @@ import { RECEIVE_POSTS, RECEIVE_USER_POSTS, RECEIVE_NEW_POST, RECEIVE_POST, RECE
         newState.post = action.post.data
         return newState;
       case RECEIVE_REGION_POSTS:
+        newState.all = action.posts.data;
         newState.region = action.posts.data;
         return newState;
       default:

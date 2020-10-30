@@ -5,6 +5,7 @@ const Region = require("../../models/Region")
 const passport = require("passport");
 const validatePostInput = require("../../validation/posts")
 // ObjectID = require('mongodb').ObjectID
+
 router.get("/test", (req, res) => res.json({ msg: "This is the posts route" }));
 
 router.get("/", (req, res) => {
@@ -23,8 +24,8 @@ router.get("/user/:user_id", (req, res) => {
 });
 
 router.get("/region/:region_id", (req, res) => {
-    console.log("IN REGION/REGIONID-=-=-=-=-=-=-=-=-")
-    // console.log(ObjectID(req.params.region_id))
+    // console.log("IN REGION/REGIONID-=-=-=-=-=-=-=-=-")
+    // console.log(new ObjectID(req.params.region_id))
     Post 
         .find({ region: req.params.region_id })
         .then(posts => res.json(posts))
@@ -47,9 +48,10 @@ router.post("/",
             return res.status(400).json(errors);
         }
         const newPost = new Post({
-            user: req.user.id,
+            users: req.user.id,
             text: req.body.text,
-            picture: req.body.picture
+            picture: req.body.picture,
+            handle: req.user.handle
         });
 
         newPost
@@ -124,7 +126,7 @@ router.post('/comment/:id',
               text: req.body.text
           }
 
-          post.comments.unshift(newComment)
+          post.comments.push(newComment)
 
           post.save().then(post => res.json(post))
     })

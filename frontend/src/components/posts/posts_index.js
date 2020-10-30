@@ -3,13 +3,16 @@ import { withRouter } from 'react-router-dom';
 import PostIndexItem from './post_index_item';
 import Map from '../map/map';
 import './post_index.css';
+import post_index_item from './post_index_item';
+import '../map/map.css';
 
 class PostIndex extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      posts: []
+      posts: [],
+      // regionPosts: [],
+      // regionId: ""
     }
 
     this.handleRegionChange = this.handleRegionChange.bind(this);
@@ -26,7 +29,11 @@ class PostIndex extends React.Component {
 
     this.props.leaveComment(id, commentData)
     setTimeout(() => {
-      this.props.fetchPosts()
+      if(this.props.regionPosts.length === 0){
+        this.props.fetchPosts()
+      } else {
+        this.props.fetchPostsByRegion(this.props.regionPosts[0].region)
+      }   
     }, 300)
   }
 
@@ -35,7 +42,11 @@ class PostIndex extends React.Component {
 
     this.props.heartPost(id, newLike)
     setTimeout(() => {
-      this.props.fetchPosts()
+      if(this.props.regionPosts.length === 0){
+        this.props.fetchPosts()
+      } else {
+        this.props.fetchPostsByRegion(this.props.regionPosts[0].region)
+      }        
     }, 300)
   }
 
@@ -44,16 +55,16 @@ class PostIndex extends React.Component {
 
     this.props.unheartPost(id, removeLike)
     setTimeout(() => {
-      this.props.fetchPosts()
+      if(this.props.regionPosts.length === 0){
+        this.props.fetchPosts()
+      } else {
+        this.props.fetchPostsByRegion(this.props.regionPosts[0].region)
+      }   
     }, 300)
   }
 
   componentWillMount() {
-    if (this.props.posts.region){
-      this.props.fetchPostsByRegion(this.props.posts.region.id);
-    } else {
-      this.props.fetchPosts();
-    }
+    this.props.fetchPosts();
   }
 
   componentWillReceiveProps(newState) {
@@ -61,14 +72,21 @@ class PostIndex extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+   
+    ( <div className="posts-idx-container">
+    {this.state.posts.map(post => (
+      <PostIndexItem key={post.id} user={this.props.user} onComment={this.onComment} userId={this.props.userId} post={post} onUnlike={this.onUnlike} onLike={this.onLike} fetchPost={this.props.fetchPost} heartPost={this.props.heartPost} />
+    ))}
+  </div>);
+
     if (this.state.posts.length === 0) {
       return (<div>There are no Posts</div>)
     } else {
       return (
           <div className="main-content">
+            <p>{console.log(this.state)}</p>
             <div className="map-container">
-            <div className="sticky-map-container"> <Map fetchWeather={this.props.fetchWeather} regions={this.props.regions} posts={this.props.posts} fetchPosts={this.props.fetchPosts} handleRegionChange={this.handleRegionChange} fetchRegions={this.props.fetchRegions} /> </div>
+            <div className="sticky-map-container"> <Map fetchWeather={this.props.fetchWeather} regions={this.props.regions} posts={this.state.posts} fetchPosts={this.props.fetchPosts} handleRegionChange={this.handleRegionChange} fetchRegions={this.props.fetchRegions} /> </div>
             </div>
             <div className="posts-idx-main-container">
               <div className="posts-idx-main" >
@@ -80,9 +98,9 @@ class PostIndex extends React.Component {
               </div>
             </div>
           </div>          
-      );
+      )} 
     }
   }
-}
+
 
 export default withRouter(PostIndex);

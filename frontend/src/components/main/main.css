@@ -23,16 +23,16 @@
 }
 
 .posts-idx-main{
-    width: 650px;
+    width: 780px;
 }
 
 .posts-idx-main-container{
-    width: 654px;
+    width: 780px;
     display: flex;
     justify-content: center;
 }
 
 .map-container{
-    width: 600px;    
+    width: 460px;    
     border-right: 10px solid rgb(69,175,181);
 }
