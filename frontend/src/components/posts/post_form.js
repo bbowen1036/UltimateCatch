@@ -5,7 +5,8 @@ class PostForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            text: ""
+            text: "",
+            picture: ""
         }
         this.updateField = this.updateField.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,6 +30,7 @@ class PostForm extends React.Component{
                 <h2>Make a post</h2>
                 <form className="post-form" onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.updateField("text")} placeholder="Check out this catch!"/>
+                    <input type="text" onChange={this.updateField("picture")} placeholder="Picture URL"/>
                     <button type="submit">Create</button>
                 </form>
             </div>
