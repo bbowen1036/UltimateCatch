@@ -136,19 +136,12 @@ function Map(props){
                     }}
                     >
                         <div>
-<<<<<<< HEAD
-                            <h2>
-                                We will put post modal here?
-                                <p>{selected.lat} {selected.lng}</p>
-                                <p onClick={() => props.handleRegionChange(selected.region_id)}> Go to Posts </p>
-                            </h2>
-                            <p>{formatRelative(selected.time, new Date())}</p>
-=======
+                
                             {/* <h2> */}
                                 {/* We will put post modal here? */}
                                 {/* <p>{selected.lat} {selected.lng}</p>
                                 <p>{props.posts.sort_id} </p> */}
-                                <p className="see-posts" onClick={() => props.handleRegionChange('5f9b444ff221afb143af1742')}>See more posts from here!</p>
+                                    <p className="see-posts" onClick={() => props.handleRegionChange(selected.region_id)}>See more posts from here!</p>
                                 <div className="post-preview">
                                     <div className="modal-picture-container">
                                         <img id="modal-picture" src={mostLikedPost().picture} />
@@ -163,7 +156,6 @@ function Map(props){
                                 {/* <Post fetchpost={props.fetchPost} lat={selected.lat} lng={selected.lng}/> */}
                             {/* </h2> */}
                             {/* <p>{formatRelative(selected.time, new Date())}</p> */}
->>>>>>> bda23a5011193b6fd757a425c870f1f53a7e80fd
                         </div>
                     </InfoWindow>
                 ) : null}
