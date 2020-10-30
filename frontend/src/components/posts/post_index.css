@@ -32,11 +32,16 @@
     width: 325px;
     height: 200px;
     margin-right: 20px;
+<<<<<<< HEAD
     
+=======
+    text-align: left;
+>>>>>>> bc187b72999fcc7d8e335a4f3537a37c019d6eb9
 }
 
 .post-pic{
     max-width: 325px;
+    max-height: 200px;
     border-radius: 10px;
     border: 1px solid grey;
 }
