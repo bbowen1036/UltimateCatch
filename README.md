@@ -78,6 +78,9 @@ Backend relational `database` model created to improve User experience.
 });
 ```
 
+![Posts Demo](img/post-gif.gif)
+
+
 ### Routing
 
 With the help of various `middlewares` such as: JWT, Passport, and Validator; `User Authenticated` pages are only rendered with proper credentials.  
