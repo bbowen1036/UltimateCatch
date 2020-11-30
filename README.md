@@ -2,7 +2,7 @@
 The serious angler's best kept secret!
 With an integrated Google Maps API, we've created a web and mobile friendly app that allows fishermen and fisherwomen to track their best fishing spots and share their 'Ultimate Catch'. Through social connectivity it creates a community of experienced and novice a fisherman alike, and allows them to share their photos, comments, likes, and tips.
 
-### [Live Link](https://ultimate-catch.herokuapp.com/#/)
+### [Live Link](https://ultimatecatch2.herokuapp.com/#/)
 
 ![screenshot](img/obama.png)
 
